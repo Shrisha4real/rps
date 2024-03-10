@@ -1,0 +1,112 @@
+img{
+    width: 25vh;
+    height:25vh ;
+    border-radius: 30%;
+}
+.result_view img{
+    width: 50vh;
+    height: 50vh    ;
+    border-radius: 30%;
+    margin: 15px;
+    padding-bottom: 10px;
+
+}
+
+*{
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+    text-align: center;
+    
+}
+
+body{
+    color: #F9E8C9;
+    background-color: #201658 ;
+    font-family: "Anta", sans-serif;
+    font-weight: 400;
+    font-style: normal;  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+header{
+    color: #201658 ;
+    background-color:#F9E8C9 ;
+    width: 100%;
+
+}
+.scoreboard{
+   
+    width: 25%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+    margin-top: 15px;
+    padding: 5px;
+    border:solid #F9E8C9;
+    border-width: 5px   ;
+    
+}
+#userscore , #compscore{
+    font-size: 100px;
+}
+#userlabelscore, #complabel{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    
+}
+.choices{
+        
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+    margin-bottom: 50px;
+
+}
+.choice{
+    position: relative;
+    top: -270px;
+    margin: 20px;
+    width: 10em;
+    height:10em ;
+    border-radius: 30%;
+}
+.result{
+    height: auto;
+    width: auto;
+    margin-top: 20px;
+    margin-bottom: 80px;
+    font-size: 35px;
+    position: relative;
+    top: 90px;
+}
+.result_view{
+    height: 50vh   ;
+    position: relative;
+    top: -190px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+   
+   
+}
+.action{
+    position: relative;
+    top: -320px;
+    font-size: 25px;
+
+}
+
+#result-stat , #result-op
+{
+    height:42px ;
+    width: 500px;
+}
+
