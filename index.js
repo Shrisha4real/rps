@@ -13,7 +13,7 @@ var compImg = document.getElementById("compImg");
 const rock_img = "/images/download.png";
 const paper_img = "/images/paper.png";
 const scirrors_img = "/images/scissors.png" ;
-const restart_button = document.getElementById("restart");
+var restart_button = document.getElementById("restart");
 var user_score = 0;
 var comp_score = 0;
 
@@ -96,8 +96,13 @@ function enableChoices() {
 function restartGame() {
     user_score=0;
     comp_score = 0;
+    compscore.innerHTML = "0";
+    userscore.innerHTML = "0"
     gameActive = true;
     result_stat.innerHTML = "START THE GAME!"
+    result_op.innerHTML = " "
+    restart_button.style.fontSize = 1 +'em';
+
     enableChoices();
 }
 
@@ -161,6 +166,10 @@ function game(user_choice)
            
             result_op.innerHTML = "";
             gameActive = false;
+            // restart_button.style.width = (restart_button.offsetWidth * 2) + 'px';
+            // restart_button.style.height = (restart_button.offsetHeight * 2) + 'px';
+            restart_button.style.fontSize = 2 +'em';
+            restart_button.style.top = 20 + 'px';
             disableChoices();
                 
         }
