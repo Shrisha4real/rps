@@ -13,12 +13,16 @@ var compImg = document.getElementById("compImg");
 const rock_img = "/images/download.png";
 const paper_img = "/images/paper.png";
 const scirrors_img = "/images/scissors.png" ;
+const restart_button = document.getElementById("restart");
 var user_score = 0;
 var comp_score = 0;
 
 
 
 /////////////////////////////////
+let gameActive=true;
+
+
 function computer_choice()
 {
     const choices = ['r' , 'p' , 's'];
@@ -43,16 +47,7 @@ function lose()
     console.log("comp score  = " , comp_score);
     compscore.innerHTML = comp_score;
 }
-function restart()
-{
-    comp_score= 0 ;
-    user_score = 0;
-    userscore.innerHTML = user_score;
-    compscore.innerHTML = comp_score;
-    userImg.style.display = "none";
-    compImg.style.display = "none";
 
-}
 
 function print_img( combine )
 {
@@ -86,88 +81,94 @@ function print_img( combine )
     }
 
 }
+function disableChoices() {
+    document.querySelectorAll('.choice').forEach(choice => {
+        choice.style.pointerEvents = 'none';
+        choice.style.opacity = 0.5;
+    });
+}
+function enableChoices() {
+    document.querySelectorAll('.choice').forEach(choice => {
+        choice.style.pointerEvents = 'auto';
+        choice.style.opacity = 1;
+    });
+}
+function restartGame() {
+    user_score=0;
+    comp_score = 0;
+    gameActive = true;
+    result_stat.innerHTML = "START THE GAME!"
+    enableChoices();
+}
+
 
 
 function game(user_choice)
 {
+    if(gameActive)
+    {
     
-    
+  
+        var comp_choice = computer_choice();
+        var combine =user_choice+comp_choice;
         
-        //userscore.innerHTML = user_score;
-        //compscore.innerHTML = comp_score;
-        //userImg.style.display = "none";
-       // compImg.style.display = "none";;
-        if(user_score==5)
-        {
-            result_stat.innerHTML ="YAY!"
-            result_op.innerHTML  = "YOU WON THE GAME!";
+        console.log(combine);
+
+        print_img( combine );
+
+        switch (combine) {
+            case ("rs"):
+                result_stat.innerHTML = "rock beats scissors";
+                win();
+                break;
+        
+            case ("pr"):
+                result_stat.innerHTML = "paper beats rock";
+                win();
+                break;
+            case ("sp"):            
+                result_stat.innerHTML = "scssors beats rock";
+                win();
+                break;
+        
+            case ("sr"):
+                result_stat.innerHTML = "scissors beats rock";
+                lose();                        
+                break;
+        
+            case ("rp"):
+                result_stat.innerHTML = "rock beats paper";
+                lose();
+                break;
+
+            case ("ps"):       
+                result_stat.innerHTML = "paper beats scissors";
+                lose(); 
+                break;    
+        
+            default:
+                result_stat.innerHTML = "   oops   ";
+                result_op.innerHTML  = "TIE!"
+                break;
+
         }
-        if(comp_score ==5)
+        if(comp_score==5 || user_score==5)
         {
-            result_stat.innerHTML ="OOPS"
-            result_op.innerHTML  = "YOU LOST THE GAME!";
+            if (comp_score==5 )
+                result_stat.innerHTML = "OOPS U LOST THE GAME!";
+            if(user_score==5)
+                result_stat.innerHTML = "YAY! YOU WON THE GAME!"
+           
+            result_op.innerHTML = "";
+            gameActive = false;
+            disableChoices();
+                
         }
-if(comp_score>5 || user_score>5)
-{   
-    if (comp_score>=5) {
-
-        comp_score = 1 ;
-        user_score = 0;
         
+       
     }
-    if (comp_score>=5) {
 
-        comp_score= 0 ;
-        user_score = 1;
-        
-    }
-   
-}
-    
 
-    var comp_choice = computer_choice();
-    var combine =user_choice+comp_choice;
-    
-    console.log(combine);
-
-    print_img( combine );
-
-    switch (combine) {
-        case ("rs"):
-            result_stat.innerHTML = "rock beats scissors";
-            win();
-            break;
-    
-        case ("pr"):
-            result_stat.innerHTML = "paper beats rock";
-            win();
-            break;
-        case ("sp"):            
-            result_stat.innerHTML = "scssors beats rock";
-            win();
-            break;
-    
-         case ("sr"):
-            result_stat.innerHTML = "scissors beats rock";
-            lose();                        
-            break;
-    
-        case ("rp"):
-            result_stat.innerHTML = "rock beats paper";
-            lose();
-            break;
-
-        case ("ps"):       
-            result_stat.innerHTML = "paper beats scissors";
-            lose(); 
-            break;    
-    
-        default:
-            result_stat.innerHTML = "   oops   ";
-            result_op.innerHTML  = "TIE!"
-            break;
-
-    }
     //console.log("comp choice " , computer_choice());
     //console.log("user choice " , user_choice);
 }
@@ -180,12 +181,13 @@ function main()
         game("p")  }  );
     scissors.addEventListener( 'click',function(){ 
         game("s") }   );
-    
+    restart_button.addEventListener('click', function(){
+        restartGame()    });
     
     
 }
 
-main()
+main();
 
 
 
